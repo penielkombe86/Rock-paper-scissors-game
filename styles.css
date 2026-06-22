@@ -1,7 +1,12 @@
+body {
+    width: 100%;
+    background-color: #0F1E36;
+    color: #f5f5f5;
+}
 #human-choice, #comp-choice {
     display: flex;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     color: white;
     justify-content: center;
     align-items: center;
@@ -20,6 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 }
 
 .button-container {
@@ -30,16 +36,37 @@
 }
 
 #rock-btn, #paper-btn{
-    margin-right: 50px
+    margin-right: 50px;
 }
 
+#rock-btn, #paper-btn, #scissors-btn {
+    width: 90px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #00ADB5;
+    border: none;
+}
+
+#rock-btn span {
+    font-size: 30px;
+}
+
+#paper-btn span {
+    font-size: 30px;
+}
+
+#scissors-btn span {
+    font-size: 30px;
+}
 
 
 h1 {
     text-align: center;
 }
 
+
 .score-board {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,13 +74,13 @@ h1 {
 }
 
 .human-score-container{
-    font-size: 40px;
+    font-size: 30px;
     margin-right: 100px;
     text-align: center;
 }
 
 .computer-score-container {
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -66,11 +93,14 @@ h1 {
 }
 
 .choice-column:first-child {
-    margin-right: 200px;
+    margin-right: 400px;
 }
 
 .choice-label {
     text-align: center;
+    margin-bottom: 30px;
 }
+
+
 
 
