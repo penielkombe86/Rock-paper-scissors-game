@@ -1,0 +1,76 @@
+#human-choice, #comp-choice {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+#human-choice {
+    background-color: purple;
+    /*margin-right: 100px;*/
+}
+
+#comp-choice {
+    background-color: black;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#rock-btn, #paper-btn{
+    margin-right: 50px
+}
+
+
+
+h1 {
+    text-align: center;
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.human-score-container{
+    font-size: 40px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.computer-score-container {
+    font-size: 40px;
+    text-align: center;
+}
+
+
+.choice-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.choice-column:first-child {
+    margin-right: 200px;
+}
+
+.choice-label {
+    text-align: center;
+}
+
+
