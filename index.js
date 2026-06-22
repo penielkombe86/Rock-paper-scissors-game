@@ -1,50 +1,46 @@
-// swap the human-choice div with another div
-
-let rock = document.createElement("div")
-
-rock.textContent = "rock"
-
-let paper = document.createElement("div")
-
-paper.textContent = "paper"
-
-let scissors = document.createElement("div")
-
-
-scissors.textContent = "scissors"
-
+// references to the DOM
 let humanChoice = document.getElementById("human-choice")
 let computerChoice = document.getElementById("comp-choice")
-
+let  humanScoreBoard = document.getElementById("human-score")
+let computerScoreBoard = document.getElementById("computer-score")
 let buttonContainer = document.querySelector(".button-container")
+
+
+let rock = document.createElement("div")
+rock.innerHTML = "<img src='./images/rock-icon].png' style=' width: 60px; height: 50px;'alt='rock-icon'>"
+
+let paper = document.createElement("div")
+paper.innerHTML = "<img src='./images/paper-icon.png style=' width: 60px; height: 50px;' alt='paper-icon'>"
+
+let scissors = document.createElement("div")
+scissors.innerHTML = "<img src='./images/scissors-icon.png' style=' width: 60px; height: 50px' alt='scissor-icon'>"
 
 let compChoice = [rock, paper, scissors]
 
 
 function playerSelection(event) {
-    let target = event.target
+    let target = event.target.closest("button")
 
     let randomChoice = compChoice[Math.floor(Math.random() * compChoice.length)]
 
     if (target.id === "rock-btn") {
-        humanChoice.replaceChildren(rock.cloneNode(true))
-        computerChoice.replaceChildren(randomChoice.cloneNode(true))
+        humanChoice.replaceWith(rock.cloneNode(true))
+        computerChoice.replaceWith(randomChoice.cloneNode(true))
     }
     else if (target.id === "paper-btn") {
-        humanChoice.replaceChildren(paper.cloneNode(true))
-        computerChoice.replaceChildren(randomChoice.cloneNode(true))
+        humanChoice.replaceWith(paper.cloneNode(true))
+        computerChoice.replaceWith(randomChoice.cloneNode(true))
     }
 
     else if (target.id === "scissors-btn") {
-        humanChoice.replaceChildren(scissors.cloneNode(true))
-        computerChoice.replaceChildren(randomChoice.cloneNode(true))
+        humanChoice.replaceWith(scissors.cloneNode(true))
+        computerChoice.replaceWith(randomChoice.cloneNode(true))
     }
 
 }
 
 
-let  humanScoreBoard = document.getElementById("human-score")
-let computerScoreBoard = document.getElementById("computer-score")
+
 
 let compScore = 0
 let humanScore = 0
