@@ -4,17 +4,18 @@ let computerChoice = document.getElementById("comp-choice")
 let  humanScoreBoard = document.getElementById("human-score")
 let computerScoreBoard = document.getElementById("computer-score")
 let buttonContainer = document.querySelector(".button-container")
-let humanChoiceColumn = document.querySelector(".human-choice-column")
-let computerChoiceColumn = document.querySelector(".computer-choice-column")
 
 
 let rock = document.createElement("div")
+rock.id = "rock"
 rock.innerHTML = "<img src='./images/rock-icon.png' style='width: 60px; height: 50px' alt='rock-icon'>"
 
 let paper = document.createElement("div")
+paper.id = "paper"
 paper.innerHTML = "<img src='./images/paper-icon.png' style='width: 60px; height: 50px;' alt='paper-icon'>"
 
 let scissors = document.createElement("div")
+scissors.id = "scissors"
 scissors.innerHTML = "<img src='./images/scissors-icon.png' style='width: 60px; height: 50px' alt='scissor-icon'>"
 
 let compChoice = [rock, paper, scissors]
@@ -50,15 +51,15 @@ let humanScore = 0
 
 
 function getWinner() {
-    if (humanChoice.textContent === "rock" && computerChoice.textContent === "scissors") {
+    if (humanChoice.firstElementChild.id === "rock" && computerChoice.firstElementChild.id === "scissors") {
         return "human"
     }
-    else if (humanChoice.textContent === "paper" && computerChoice.textContent === "rock") {
+    else if (humanChoice.firstElementChild.id === "paper" && computerChoice.firstElementChild.id === "rock") {
         return "human"
     }
-    else if (humanChoice.textContent === "scissors" && computerChoice.textContent === "paper") {
+    else if (humanChoice.firstElementChild.id === "scissors" && computerChoice.firstElementChild.id === "paper") {
         return "human"
-    } else if (humanChoice.textContent === computerChoice.textContent) {
+    } else if (humanChoice.firstElementChild.id === computerChoice.firstElementChild.id) {
         return "tie"
     }
     else {
@@ -85,7 +86,7 @@ function updateScore(winner) {
 
 buttonContainer.addEventListener("click", () => {
 
-    if (event.target.tagName !== "BUTTON") return
+    if (!event.target.closest("button")) return
     playerSelection(event)
     let winner = getWinner()
     updateScore(winner)
