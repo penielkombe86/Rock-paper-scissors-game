@@ -14,7 +14,10 @@ let rockBtn = document.getElementById("rock-btn")
 let paperBtn = document.getElementById("paper-btn")
 let scissorsBtn = document.getElementById("scissors-btn")
 
+let compScore = 0
+let humanScore = 0
 
+// create divs and insert the rock, paper , scissors images in them
 let rock = document.createElement("div")
 rock.id = "rock"
 rock.innerHTML = "<img src='./images/rock-icon.png' style='width: 60px; height: 50px' alt='rock-icon'>"
@@ -29,11 +32,14 @@ scissors.innerHTML = "<img src='./images/scissors-icon.png' style='width: 60px; 
 
 let compChoice = [rock, paper, scissors]
 
-
+// handles the player selection of the options
 function playerSelection(event) {
+    // locates if the click event originated from a button element
     let target = event.target.closest("button")
 
     let randomCompChoice = compChoice[Math.floor(Math.random() * compChoice.length)]
+
+    // use cloneNode to create a copy of the images because html element can only exist one place at time
     let randomChoice = randomCompChoice.cloneNode(true)
 
     if (target.id === "rock-btn") {
@@ -52,12 +58,7 @@ function playerSelection(event) {
 
 }
 
-
-
-let compScore = 0
-let humanScore = 0
-
-
+// get winner using the iD's on the rock, paper, scissors images
 function getWinner() {
     if (humanChoice.firstElementChild.id === "rock" && computerChoice.firstElementChild.id === "scissors") {
         return "human"
@@ -76,7 +77,7 @@ function getWinner() {
 
 }
 
-
+// update score using data from the getWinner() function
 function updateScore(winner) {
     if (winner === "human") {
         humanScore++
@@ -92,6 +93,7 @@ function updateScore(winner) {
 
 }
 
+//  track the number of rounds played and display popUp buttons
 function trackRounds() {    
     if (roundCounter < maxScore) {
         roundCounter++
@@ -100,34 +102,30 @@ function trackRounds() {
         popUps()
     }
 }
-
+// display the popup buttons after getting the winner
 function popUps() {
     if (roundCounter === maxScore) {
+
+        rockBtn.disabled = true
+        paperBtn.disabled = true
+        scissorsBtn.disabled = true
+
         if (humanScore > compScore) {
             playAgain.style.display = "block"
-            rockBtn.disabled = true
-            paperBtn.disabled = true
-            scissorsBtn.disabled = true
+
         }
         else if (humanScore < compScore) {
             tryAgain.style.display = "block"
-            rockBtn.disabled = true
-            paperBtn.disabled = true
-            scissorsBtn.disabled = true
-
         }
         else {
             tie.style.display = "block"
-            rockBtn.disabled = true
-            paperBtn.disabled = true
-            scissorsBtn.disabled = true
         }
     }
 }
 
 
 let roundCounter = 0
-let maxScore = 6
+let maxScore = 5
 
 // main game logic
 function playGame() {
@@ -141,28 +139,33 @@ function playGame() {
 }
 
 function resetGame() {
+    // locate if the click event originated from a button element
     if (!event.target.closest("button")) return 
 
+    // reset the counter variables
     compScore = 0
     humanScore = 0
     roundCounter = 0
     
+    // reset the humanChoice div and computerChoice div
     humanChoice.replaceChildren("Human")
     computerChoice.replaceChildren("Computer")
 
+    // reset the entire score board back to 0 
     humanScoreBoard.replaceChildren("0") 
     computerScoreBoard.replaceChildren("0")
 
+    // enable the disabled buttons
     rockBtn.disabled = false
     paperBtn.disabled = false
     scissorsBtn.disabled = false
 
+    // hides the popups
     playAgain.style.display = "none"
     tryAgain.style.display = "none"
     tie.style.display = "none"
 
 }
-
 
 
 buttonContainer.addEventListener("click", playGame)
