@@ -4,6 +4,15 @@ let computerChoice = document.getElementById("comp-choice")
 let  humanScoreBoard = document.getElementById("human-score")
 let computerScoreBoard = document.getElementById("computer-score")
 let buttonContainer = document.querySelector(".button-container")
+let roundContainer = document.querySelector(".round")
+
+let tryAgain = document.getElementById("try-again")
+let playAgain = document.getElementById("play-again")
+let tie = document.getElementById("tie")
+
+let rockBtn = document.getElementById("rock-btn")
+let paperBtn = document.getElementById("paper-btn")
+let scissorsBtn = document.getElementById("scissors-btn")
 
 
 let rock = document.createElement("div")
@@ -45,7 +54,6 @@ function playerSelection(event) {
 
 
 
-
 let compScore = 0
 let humanScore = 0
 
@@ -84,10 +92,78 @@ function updateScore(winner) {
 
 }
 
-buttonContainer.addEventListener("click", () => {
+function trackRounds() {    
+    if (roundCounter < maxScore) {
+        roundCounter++
+    }
+    else {
+        popUps()
+    }
+}
 
+function popUps() {
+    if (roundCounter === maxScore) {
+        if (humanScore > compScore) {
+            playAgain.style.display = "block"
+            rockBtn.disabled = true
+            paperBtn.disabled = true
+            scissorsBtn.disabled = true
+        }
+        else if (humanScore < compScore) {
+            tryAgain.style.display = "block"
+            rockBtn.disabled = true
+            paperBtn.disabled = true
+            scissorsBtn.disabled = true
+
+        }
+        else {
+            tie.style.display = "block"
+            rockBtn.disabled = true
+            paperBtn.disabled = true
+            scissorsBtn.disabled = true
+        }
+    }
+}
+
+
+let roundCounter = 0
+let maxScore = 6
+
+// main game logic
+function playGame() {
     if (!event.target.closest("button")) return
+
     playerSelection(event)
     let winner = getWinner()
     updateScore(winner)
-})
+
+    trackRounds()
+}
+
+function resetGame() {
+    if (!event.target.closest("button")) return 
+
+    compScore = 0
+    humanScore = 0
+    roundCounter = 0
+    
+    humanChoice.replaceChildren("Human")
+    computerChoice.replaceChildren("Computer")
+
+    humanScoreBoard.replaceChildren("0") 
+    computerScoreBoard.replaceChildren("0")
+
+    rockBtn.disabled = false
+    paperBtn.disabled = false
+    scissorsBtn.disabled = false
+
+    playAgain.style.display = "none"
+    tryAgain.style.display = "none"
+    tie.style.display = "none"
+
+}
+
+
+
+buttonContainer.addEventListener("click", playGame)
+roundContainer.addEventListener("click", resetGame)
