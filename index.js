@@ -1,96 +1,172 @@
-// get human choice
-// get computer choice
-// compare the two and get winner
-// update scores
-// declare winner
+// references to the DOM
+let humanChoice = document.getElementById("human-choice")
+let computerChoice = document.getElementById("comp-choice")
+let  humanScoreBoard = document.getElementById("human-score")
+let computerScoreBoard = document.getElementById("computer-score")
+let buttonContainer = document.querySelector(".button-container")
+let roundContainer = document.querySelector(".round")
 
+let tryAgain = document.getElementById("try-again")
+let playAgain = document.getElementById("play-again")
+let tie = document.getElementById("tie")
 
-function playGame() {
-    let humanScore = 0
-    let compScore = 0
+let rockBtn = document.getElementById("rock-btn")
+let paperBtn = document.getElementById("paper-btn")
+let scissorsBtn = document.getElementById("scissors-btn")
 
-    // ask the player for their choice
-    function getHumanChoice() {
-        const humanChoice = prompt("Enter rock, paper or scissors")
-        return humanChoice
+let compScore = 0
+let humanScore = 0
+
+// create divs and insert the rock, paper , scissors images in them
+let rock = document.createElement("div")
+rock.id = "rock"
+rock.innerHTML = "<img src='./images/rock-icon.png' style='width: 60px; height: 50px' alt='rock-icon'>"
+
+let paper = document.createElement("div")
+paper.id = "paper"
+paper.innerHTML = "<img src='./images/paper-icon.png' style='width: 60px; height: 50px;' alt='paper-icon'>"
+
+let scissors = document.createElement("div")
+scissors.id = "scissors"
+scissors.innerHTML = "<img src='./images/scissors-icon.png' style='width: 60px; height: 50px' alt='scissor-icon'>"
+
+let compChoice = [rock, paper, scissors]
+
+// handles the player selection of the options
+function playerSelection(event) {
+    // locates if the click event originated from a button element
+    let target = event.target.closest("button")
+
+    let randomCompChoice = compChoice[Math.floor(Math.random() * compChoice.length)]
+
+    // use cloneNode to create a copy of the images because html element can only exist one place at time
+    let randomChoice = randomCompChoice.cloneNode(true)
+
+    if (target.id === "rock-btn") {
+        humanChoice.replaceChildren(rock)
+        computerChoice.replaceChildren(randomChoice)
+    }
+    else if (target.id === "paper-btn") {
+        humanChoice.replaceChildren(paper)
+        computerChoice.replaceChildren(randomChoice)
     }
 
-    // randomly select rock, paper or scissors for the computer
-    function getCompChoice() {
-        const compChoice = ["rock", "paper", "scissors"]
-        return compChoice[Math.floor(Math.random() * compChoice.length)]
+    else if (target.id === "scissors-btn") {
+        humanChoice.replaceChildren(scissors)
+        computerChoice.replaceChildren(randomChoice)
     }
 
-    // compare choices and determine winner
-    function getWinner(humanChoice, computerChoice) {
-        console.log(`You chose ${humanChoice}`)
-        console.log(`Computer chose ${computerChoice}`)
-        if (humanChoice === "rock" && computerChoice === "scissors") {
-            console.log("You win! rock beats scissors")
-            return "human"
-        } else if(humanChoice === "paper" && computerChoice === "rock") {
-            console.log("You win! paper beats rock")
-            return "human"
-        } else if(humanChoice === "scissors" && computerChoice === "paper") {
-            console.log("You win! scissors beats paper")
-            return "human"
-        } else if(humanChoice === computerChoice) {
-            console.log("Its a tie")
-            return "tie"
-        } else {
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
-            return "computer"
+}
+
+// get winner using the iD's on the rock, paper, scissors images
+function getWinner() {
+    if (humanChoice.firstElementChild.id === "rock" && computerChoice.firstElementChild.id === "scissors") {
+        return "human"
+    }
+    else if (humanChoice.firstElementChild.id === "paper" && computerChoice.firstElementChild.id === "rock") {
+        return "human"
+    }
+    else if (humanChoice.firstElementChild.id === "scissors" && computerChoice.firstElementChild.id === "paper") {
+        return "human"
+    } else if (humanChoice.firstElementChild.id === computerChoice.firstElementChild.id) {
+        return "tie"
+    }
+    else {
+        return "computer"
+    }
+
+}
+
+// update score using data from the getWinner() function
+function updateScore(winner) {
+    if (winner === "human") {
+        humanScore++
+        humanScoreBoard.textContent = humanScore
+    }
+    else if (winner === "computer") {
+        compScore++
+        computerScoreBoard.textContent = compScore
+    }
+    else if (winner === "tie") {
+        humanScore = humanScore
+    }
+
+}
+
+//  track the number of rounds played and display popUp buttons
+function trackRounds() {    
+    if (roundCounter < maxScore) {
+        roundCounter++
+    }
+    else {
+        popUps()
+    }
+}
+// display the popup buttons after getting the winner
+function popUps() {
+    if (roundCounter === maxScore) {
+
+        rockBtn.disabled = true
+        paperBtn.disabled = true
+        scissorsBtn.disabled = true
+
+        if (humanScore > compScore) {
+            playAgain.style.display = "block"
+
         }
-
-    }
-
-    // update the running score after each round
-    function updateScores(winner) {
-        if (winner === "human") {
-            humanScore++
-        } else if(winner === "computer") {
-            compScore++
+        else if (humanScore < compScore) {
+            tryAgain.style.display = "block"
         }
-    }
-    // display current scores
-    function showScores() {
-        console.log(`Your score is ${humanScore}`)
-        console.log(`Computer score is ${compScore}`)
-    }
- 
-    // round 1
-    let winner1 = getWinner(getHumanChoice(), getCompChoice())
-    updateScores(winner1)
-    showScores()
-
-    // round 2
-    let winner2 = getWinner(getHumanChoice(), getCompChoice())
-    updateScores(winner2)
-    showScores()
-     
-    // round 3
-    let winner3 = getWinner(getHumanChoice(), getCompChoice())
-    updateScores(winner3)
-    showScores()
-    
-    // round 4
-    let winner4 = getWinner(getHumanChoice(), getCompChoice())
-    updateScores(winner4)
-    showScores()
-
-    // round 5
-    let winner5 = getWinner(getHumanChoice(), getCompChoice())
-    updateScores(winner5)
-    showScores()
-
-    // determine the overall winner after the 5 rounds
-    if (humanScore > compScore) {
-        console.log("Congratulations! You win")
-    } if (compScore > humanScore) {
-        console.log("Sorry! You lose")
-    } if (humanScore === compScore) {
-        console.log("It's a tie")
+        else {
+            tie.style.display = "block"
+        }
     }
 }
 
-playGame()
+
+let roundCounter = 0
+let maxScore = 5
+
+// main game logic
+function playGame() {
+    if (!event.target.closest("button")) return
+
+    playerSelection(event)
+    let winner = getWinner()
+    updateScore(winner)
+
+    trackRounds()
+}
+
+function resetGame() {
+    // locate if the click event originated from a button element
+    if (!event.target.closest("button")) return 
+
+    // reset the counter variables
+    compScore = 0
+    humanScore = 0
+    roundCounter = 0
+    
+    // reset the humanChoice div and computerChoice div
+    humanChoice.replaceChildren("Human")
+    computerChoice.replaceChildren("Computer")
+
+    // reset the entire score board back to 0 
+    humanScoreBoard.replaceChildren("0") 
+    computerScoreBoard.replaceChildren("0")
+
+    // enable the disabled buttons
+    rockBtn.disabled = false
+    paperBtn.disabled = false
+    scissorsBtn.disabled = false
+
+    // hides the popups
+    playAgain.style.display = "none"
+    tryAgain.style.display = "none"
+    tie.style.display = "none"
+
+}
+
+
+buttonContainer.addEventListener("click", playGame)
+roundContainer.addEventListener("click", resetGame)

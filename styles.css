@@ -1,0 +1,134 @@
+body {
+    width: 100%;
+    background-color: #0F1721;
+    color: #f5f5f5;
+}
+#human-choice, #comp-choice {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+#human-choice {
+    background-color:  #00f2fe;
+    /*margin-right: 100px;*/
+}
+
+#comp-choice {
+    background-color:  #f43f5e;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#rock-btn, #paper-btn{
+    margin-right: 100px;
+}
+
+#rock-btn, #paper-btn, #scissors-btn {
+    width: 90px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #00ADB5;
+    border: none;
+}
+
+#rock-btn span {
+    font-size: 30px;
+}
+
+#paper-btn span {
+    font-size: 30px;
+}
+
+#scissors-btn span {
+    font-size: 30px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #ffffff
+}
+
+
+.score-board {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.score-label {
+    color: #f59e0b
+}
+
+.human-score-container{
+    font-size: 24px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.computer-score-container {
+    font-size: 24px;
+    text-align: center;
+}
+
+
+.human-choice-column, .computer-choice-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.human-choice-column:first-child {
+    margin-right: 400px;
+}
+
+.choice-label {
+    color: #f59e0b;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.round {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#try-again, #play-again, #tie {
+    display: none;
+    background-color: #d946ef;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    height: 40px;
+    font-weight: bold;
+    color: #ffff;
+}
+
+
+
+
+
+
+
+

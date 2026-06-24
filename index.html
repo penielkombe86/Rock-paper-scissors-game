@@ -4,10 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-paper-scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <script src="index.js"></script>
     
+    <header>
+        <h1>ROCK PAPER SCISSORS GAME</h1>
+    </header>
+
+    <main>
+        <section>
+            <div class="choice-container">
+                <div class="choice-column">
+                    <span class="choice-label">HUMAN</span>
+                    <div id="human-choice"><p>Human</p></div>
+                </div>
+                <div class="choice-column">
+                    <span class="choice-label">COMPUTER</span>
+                    <div id="comp-choice"><p>Computer</p></div>
+                </div>  
+            </div>
+        </section>
+        <section>
+            <div class="button-container">
+                <button id="rock-btn"><span>✊</span></button>
+                <button id="paper-btn"><span>✋</span></button>
+                <button id="scissors-btn"><span>✌️</span></button>
+            </div>
+        </section>
+        <section>
+            <div class="score-board">
+                <div class="human-score-container">
+                    <p>Human Score</p>
+                    <p id="human-score">0</p>
+                </div>
+                <div id="colon">:</div>
+                <div class="computer-score-container">
+                    <p>Computer Score</p>
+                    <p id="computer-score">0</p>
+                </div>
+            </div>
+        </section>
+        <section>
+
+        </section>
+    </main>
+
+    <footer>
+        <button></button>
+
+    </footer>
+    <script src="index.js"></script>
 </body>
 </html>
