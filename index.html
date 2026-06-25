@@ -15,11 +15,11 @@
     <main>
         <section>
             <div class="choice-container">
-                <div class="choice-column">
+                <div class="human-choice-column">
                     <span class="choice-label">HUMAN</span>
                     <div id="human-choice"><p>Human</p></div>
                 </div>
-                <div class="choice-column">
+                <div class="computer-choice-column">
                     <span class="choice-label">COMPUTER</span>
                     <div id="comp-choice"><p>Computer</p></div>
                 </div>  
@@ -38,7 +38,6 @@
                     <p>Human Score</p>
                     <p id="human-score">0</p>
                 </div>
-                <div id="colon">:</div>
                 <div class="computer-score-container">
                     <p>Computer Score</p>
                     <p id="computer-score">0</p>
@@ -46,14 +45,22 @@
             </div>
         </section>
         <section>
-
+            <div class="round">
+                <button id="try-again">
+                    You lose!!
+                    try again
+                </button>
+                <button id="play-again">
+                    You win!!
+                    play again
+                </button>
+                <button id="tie">
+                    it's a tie!!
+                    play again
+                </button>
+            </div>
         </section>
     </main>
-
-    <footer>
-        <button></button>
-
-    </footer>
     <script src="index.js"></script>
 </body>
 </html>
